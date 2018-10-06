@@ -32,3 +32,14 @@ image x_1 y_1 ... x_i y_i ... x_68 y_68
 ### Identity
 - CASIA-WebFace [[Google Drive]](https://drive.google.com/open?id=1e2N7hR84XoV5WjDdC_QhVd7Q8IaXOOv0)
     <p align="center"> <img src="pics\casia-webface.png"> </p>
+
+## Citation
+If you find the results of [Robust-FEC-CNN](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/He_Robust_FEC-CNN_A_CVPR_2017_paper.pdf) useful in your research work, please consider citing:
+
+    @InProceedings{He_2017_CVPR_Workshops,
+        author = {He, Zhenliang and Zhang, Jie and Kan, Meina and Shan, Shiguang and Chen, Xilin},
+        title = {Robust FEC-CNN: A High Accuracy Facial Landmark Detection System},
+        booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) Workshops},
+        month = {July},
+        year = {2017}
+    }
