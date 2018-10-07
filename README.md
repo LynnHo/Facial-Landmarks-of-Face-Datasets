@@ -20,17 +20,17 @@ image x_1 y_1 ... x_i y_i ... x_68 y_68
 
 ## Landmarks File of Face Datasets
 ### Attribute
-- CelebA [[Google Drive]](https://drive.google.com/open?id=1irMazxNBx2KDZXpaixza4KZTXDTstk3G)
+- CelebA [[Google Drive]](https://drive.google.com/open?id=1irMazxNBx2KDZXpaixza4KZTXDTstk3G) [[Baidu Netdisk]](https://pan.baidu.com/s/10th5yBBpuKjefUrE_zWDlg)
     <p align="center"> <img src="pics\celeba.png"> </p>
 
 ### Age
-- CACD [[Google Drive]](https://drive.google.com/open?id=1OdP7t0KQZ5sOyILGN71LORSLrBmDfVmi)
+- CACD [[Google Drive]](https://drive.google.com/open?id=1OdP7t0KQZ5sOyILGN71LORSLrBmDfVmi) [[Baidu Netdisk]](https://pan.baidu.com/s/1IS8PKLUDFBrfIxb5NVv-kw)
     <p align="center"> <img src="pics\cacd.png"> </p>
-- MORPH [[Google Drive]](https://drive.google.com/open?id=15bFf1eBdPWvGbZoZ2ValYDY2tOBRfxdV)
+- MORPH [[Google Drive]](https://drive.google.com/open?id=15bFf1eBdPWvGbZoZ2ValYDY2tOBRfxdV) [[Baidu Netdisk]](https://pan.baidu.com/s/19YH-1aTo5YonAr8dzW6Dpg)
     <p align="center"> <img src="pics\morph.png"> </p>
 
 ### Identity
-- CASIA-WebFace [[Google Drive]](https://drive.google.com/open?id=1e2N7hR84XoV5WjDdC_QhVd7Q8IaXOOv0)
+- CASIA-WebFace [[Google Drive]](https://drive.google.com/open?id=1e2N7hR84XoV5WjDdC_QhVd7Q8IaXOOv0) [[Baidu Netdisk]](https://pan.baidu.com/s/18QXpzZ9YxNzN6rX1ufIBkA)
     <p align="center"> <img src="pics\casia-webface.png"> </p>
 
 ## Citation
