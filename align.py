@@ -9,6 +9,7 @@ import os
 
 import cropper
 import numpy as np
+import tqdm
 
 
 # ==============================================================================
@@ -83,12 +84,16 @@ def work(i):  # a single work
                               align_type=args.align_type,
                               order=args.order,
                               mode=args.mode)
-        name = os.path.splitext(os.path.basename(img_names[i]))[0] + '.' + args.save_format
-        imwrite(os.path.join(save_dir, name), img_crop)
+        name = os.path.splitext(img_names[i])[0] + '.' + args.save_format
+        path = os.path.join(save_dir, name)
+        if not os.path.isdir(os.path.split(path)[0]):
+            os.makedirs(os.path.split(path)[0])
+        imwrite(path, img_crop)
     except:
         print('%s fails!' % img_names[i])
 
 pool = Pool(args.n_worker)
-pool.map(work, range(len(img_names)))
+for _ in tqdm.tqdm(pool.imap(work, range(len(img_names))), total=len(img_names)):
+    pass
 pool.close()
 pool.join()
