@@ -74,22 +74,27 @@ standard_landmark[:, 1] += args.move_h
 
 
 def work(i):  # a single work
-    try:
-        img = imread(os.path.join(args.img_dir, img_names[i]))
-        img_crop = align_crop(img,
-                              landmarks[i],
-                              standard_landmark,
-                              crop_size=(args.crop_size_h, args.crop_size_w),
-                              face_factor=args.face_factor,
-                              align_type=args.align_type,
-                              order=args.order,
-                              mode=args.mode)
-        name = os.path.splitext(img_names[i])[0] + '.' + args.save_format
-        path = os.path.join(save_dir, name)
-        if not os.path.isdir(os.path.split(path)[0]):
-            os.makedirs(os.path.split(path)[0])
-        imwrite(path, img_crop)
-    except:
+    for _ in range(3):  # try three times
+        try:
+            img = imread(os.path.join(args.img_dir, img_names[i]))
+            img_crop = align_crop(img,
+                                  landmarks[i],
+                                  standard_landmark,
+                                  crop_size=(args.crop_size_h, args.crop_size_w),
+                                  face_factor=args.face_factor,
+                                  align_type=args.align_type,
+                                  order=args.order,
+                                  mode=args.mode)
+            name = os.path.splitext(img_names[i])[0] + '.' + args.save_format
+            path = os.path.join(save_dir, name)
+            if not os.path.isdir(os.path.split(path)[0]):
+                os.makedirs(os.path.split(path)[0])
+            imwrite(path, img_crop)
+            succeed = True
+            break
+        except:
+            succeed = False
+    if not succeed:
         print('%s fails!' % img_names[i])
 
 pool = Pool(args.n_worker)
