@@ -6,6 +6,7 @@ import argparse
 from functools import partial
 from multiprocessing import Pool
 import os
+import re
 
 import cropper
 import numpy as np
@@ -21,14 +22,14 @@ parser.add_argument('--img_dir', dest='img_dir', required=True)
 parser.add_argument('--save_dir', dest='save_dir', required=True)
 parser.add_argument('--landmark_file', dest='landmark_file', default='landmark.txt')
 parser.add_argument('--standard_landmark_file', dest='standard_landmark_file', default='standard_landmark_68pts.txt')
-parser.add_argument('--crop_size_h', dest='crop_size_h', type=int, default=256)
-parser.add_argument('--crop_size_w', dest='crop_size_w', type=int, default=256)
-parser.add_argument('--move_h', dest='move_h', type=float, default=0.175)
+parser.add_argument('--crop_size_h', dest='crop_size_h', type=int, default=572)
+parser.add_argument('--crop_size_w', dest='crop_size_w', type=int, default=572)
+parser.add_argument('--move_h', dest='move_h', type=float, default=0.25)
 parser.add_argument('--move_w', dest='move_w', type=float, default=0.)
 parser.add_argument('--save_format', dest='save_format', choices=['jpg', 'png'], default='jpg')
 parser.add_argument('--n_worker', dest='n_worker', type=int, default=8)
 # others
-parser.add_argument('--face_factor', dest='face_factor', type=float, help='The factor of face area relative to the output image.', default=0.6)
+parser.add_argument('--face_factor', dest='face_factor', type=float, help='The factor of face area relative to the output image.', default=0.45)
 parser.add_argument('--align_type', dest='align_type', choices=['affine', 'similarity'], default='similarity')
 parser.add_argument('--order', dest='order', type=int, choices=[0, 1, 2, 3, 4, 5], help='The order of interpolation.', default=3)
 parser.add_argument('--mode', dest='mode', choices=['constant', 'edge', 'symmetric', 'reflect', 'wrap'], default='edge')
@@ -56,14 +57,14 @@ except:
 # ==============================================================================
 # =                                     run                                    =
 # ==============================================================================
-save_dir = os.path.join(args.save_dir, 'align_size(%d,%d)_move(%.3f,%.3f)_%s' % (args.crop_size_h, args.crop_size_w, args.move_h, args.move_w, args.save_format), 'data')
+save_dir = os.path.join(args.save_dir, 'align_size(%d,%d)_move(%.3f,%.3f)_face_factor(%.3f)_%s' % (args.crop_size_h, args.crop_size_w, args.move_h, args.move_w, args.face_factor, args.save_format), 'data')
 if not os.path.isdir(save_dir):
     os.makedirs(save_dir)
 
 # count landmarks
 with open(args.landmark_file) as f:
     line = f.readline()
-n_landmark = line.count(' ') // 2
+n_landmark = len(re.split('[ ]+', line)[1:]) // 2
 
 # read data
 img_names = np.genfromtxt(args.landmark_file, dtype=np.str, usecols=0)
@@ -77,19 +78,26 @@ def work(i):  # a single work
     for _ in range(3):  # try three times
         try:
             img = imread(os.path.join(args.img_dir, img_names[i]))
-            img_crop = align_crop(img,
-                                  landmarks[i],
-                                  standard_landmark,
-                                  crop_size=(args.crop_size_h, args.crop_size_w),
-                                  face_factor=args.face_factor,
-                                  align_type=args.align_type,
-                                  order=args.order,
-                                  mode=args.mode)
+            img_crop, tformed_landmarks = align_crop(img,
+                                                     landmarks[i],
+                                                     standard_landmark,
+                                                     crop_size=(args.crop_size_h, args.crop_size_w),
+                                                     face_factor=args.face_factor,
+                                                     align_type=args.align_type,
+                                                     order=args.order,
+                                                     mode=args.mode)
+
             name = os.path.splitext(img_names[i])[0] + '.' + args.save_format
             path = os.path.join(save_dir, name)
             if not os.path.isdir(os.path.split(path)[0]):
                 os.makedirs(os.path.split(path)[0])
             imwrite(path, img_crop)
+
+            tformed_landmarks.shape = -1
+            txt_name = os.path.splitext(img_names[i])[0] + '.txt'
+            txt_path = os.path.join(save_dir, txt_name)
+            with open(txt_path, 'w') as f:
+                f.write(('%s' + ' %.1f' * n_landmark * 2 + '\n') % ((name, ) + tuple(tformed_landmarks)))
             succeed = True
             break
         except:
@@ -102,3 +110,17 @@ for _ in tqdm.tqdm(pool.imap(work, range(len(img_names))), total=len(img_names))
     pass
 pool.close()
 pool.join()
+
+landmarks_path = os.path.join(args.save_dir, 'align_size(%d,%d)_move(%.3f,%.3f)_face_factor(%.3f)_%s' % (args.crop_size_h, args.crop_size_w, args.move_h, args.move_w, args.face_factor, args.save_format), 'landmark.txt')
+with open(landmarks_path, 'w') as f:
+    lines = []
+    for i in range(len(img_names)):
+        try:
+            txt_name = os.path.splitext(img_names[i])[0] + '.txt'
+            txt_path = os.path.join(save_dir, txt_name)
+            with open(txt_path) as f_tmp:
+                lines.append(f_tmp.readline())
+            os.remove(txt_path)
+        except:
+            pass
+    f.writelines(lines)
