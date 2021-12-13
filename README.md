@@ -42,10 +42,16 @@ image x_1 y_1 ... x_i y_i ... x_68 y_68
 ## Citation
 If you find the results of [Robust-FEC-CNN](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/He_Robust_FEC-CNN_A_CVPR_2017_paper.pdf) useful in your research work, please consider citing:
 
-    @InProceedings{He_2017_CVPR_Workshops,
+    @InProceedings{he2017robust,
         author = {He, Zhenliang and Zhang, Jie and Kan, Meina and Shan, Shiguang and Chen, Xilin},
         title = {Robust FEC-CNN: A High Accuracy Facial Landmark Detection System},
         booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR) Workshops},
-        month = {July},
         year = {2017}
+    }
+    
+    @InProceedings{he2017fully,
+        author={He, Zhenliang and Kan, Meina and Zhang, Jie and Chen, Xilin and Shan, Shiguang},
+        title={A Fully End-to-end Cascaded CNN for Facial Landmark Detection},
+        booktitle={The IEEE International Conference on Automatic Face \& Gesture Recognition (FG)},
+        year={2017}
     }
