@@ -2,8 +2,18 @@
     <a href="http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/He_Robust_FEC-CNN_A_CVPR_2017_paper.pdf">Robust-FEC-CNN</a> Results of Face Datasets 
 </h1>
 
-<a href="https://kdocs.cn/l/cdazHvg3gdca"><img src="https://img.shields.io/badge/FG 2017-3A98B9?label=%F0%9F%93%9D&labelColor=FFFDD0" style="height: 28px" /></a>
 <a href="http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/He_Robust_FEC-CNN_A_CVPR_2017_paper.pdf"><img src="https://img.shields.io/badge/CVPRW 2017-3A98B9?label=%F0%9F%93%9D&labelColor=FFFDD0" style="height: 28px" /></a>
+<a href="https://kdocs.cn/l/cdazHvg3gdca"><img src="https://img.shields.io/badge/FG 2017-3A98B9?label=%F0%9F%93%9D&labelColor=FFFDD0" style="height: 28px" /></a>
+
+> **[Robust FEC-CNN: A High Accuracy Facial Landmark Detection System](https://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/He_Robust_FEC-CNN_A_CVPR_2017_paper.pdf)** \
+> [Zhenliang He](https://lynnho.github.io)<sup>1,2</sup>, [Jie Zhang](https://scholar.google.com/citations?user=hJAhF0sAAAAJ&hl=en)<sup>1,2</sup>, [Meina Kan](https://scholar.google.com/citations?user=4AKCKKEAAAAJ)<sup>1,3</sup>, [Shiguang Shan](https://scholar.google.com/citations?user=Vkzd7MIAAAAJ)<sup>1,3</sup>, [Xilin Chen](https://scholar.google.com/citations?user=vVx2v20AAAAJ&hl=zh-CN)<sup>1</sup>
+>
+> **[A Fully End-to-End Cascaded CNN for Facial Landmark Detection](https://kdocs.cn/l/cdazHvg3gdca)** \
+> [Zhenliang He](https://lynnho.github.io)<sup>1,2</sup>, [Meina Kan](https://scholar.google.com/citations?user=4AKCKKEAAAAJ)<sup>1,3</sup>, [Jie Zhang](https://scholar.google.com/citations?user=hJAhF0sAAAAJ&hl=en)<sup>1,2</sup>, [Xilin Chen](https://scholar.google.com/citations?user=vVx2v20AAAAJ&hl=zh-CN)<sup>1</sup>, [Shiguang Shan](https://scholar.google.com/citations?user=Vkzd7MIAAAAJ)<sup>1,3</sup>
+> 
+> <sup>1</sup>Key Lab of Intelligent Information Processing, Institute of Computing Technology, CAS, China \
+> <sup>2</sup>University of Chinese Academy of Sciences, China \
+> <sup>3</sup>CAS Center for Excellence in Brain Science and Intelligence Technology, China
 
 This repository provides facial landmark detection results of several face datasets by the technique of [Robust-FEC-CNN](http://openaccess.thecvf.com/content_cvpr_2017_workshops/w33/papers/He_Robust_FEC-CNN_A_CVPR_2017_paper.pdf) (Won 2nd of [CVPR 2017 Faces "In-The-Wild" Workshop-Challenge](http://openaccess.thecvf.com/CVPR2017_workshops/CVPR2017_W33.py)). These landmarks can be used for aligning faces of these datasets (use [align.py](align.py)).
 
